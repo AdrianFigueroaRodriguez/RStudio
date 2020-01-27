@@ -107,12 +107,83 @@ ggplot(data = mpg.data) +
   geom_point(mapping = aes(x = cyl, y = cty, colour = displ <5))
 # It creates a boolean color coded graph where it takes de operation in colour (true/false)
 
-#Hello fix
+#This code generates error:
+# Cannot use `+.gg()` with a single argument. Did you accidentally put + on a new line?
 
-ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy))
+#ggplot(data = mpg) 
+#+ geom_point(mapping = aes(x = displ, y = hwy))
+
+ggplot(data = mpg.data) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_wrap(~ class, nrow = 2)
+
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_grid(drv ~ cyl)
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_grid(. ~ cyl)
+
+
+#3.5.1 Exercises
+#1. What happens if you facet on a continuous variable?
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_grid(. ~ displ)
+# You get a lot more sections than are feasable to understand. (Too much mess)
+
+#2. What do the empty cells in plot with facet_grid(drv ~ cyl) mean? How do they relate to this plot?
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = drv, y = cyl)) +
+  facet_grid(drv ~ cyl)
+# That there is no data for the graph to present.
+
+#3. What plots does the folling code make?
+#   What does . do?
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ .)
+
+# Makes groups of the facet in horizontal form.
+
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(. ~ cyl)
+
+# Makes groups of the facet in vertical form.
+
+#4. Take the first faceted plot in this section:
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_wrap(~ class, nrow = 2)
+
+# What are the advantages to using faceting instead of the colour aesthetic?
+# What are the disadvantages?
+# How might the balance change if you had a larger dataset?
+
+# You can see groups of similar objects.
+# You can only up to a certain level of information.
+# It would show more details in the data, and give a better image of the data that is being processed.
+
+#5. Read ?facet_wrap.
+#   What does nrow do?
+#   What does ncol do?
+#   What other options control the layout of the individual panels?
+#   Why doesn’t facet_grid() have nrow and ncol arguments?
+
+
+?facet_wrap
 
 
 
+#6. When using facet_grid() you should usually put the variable with more unique levels in the columns.
+#   Why?
 
 
 
