@@ -107,9 +107,9 @@ ggplot(data = mpg.data) +
   geom_point(mapping = aes(x = cyl, y = cty, colour = displ <5))
 # It creates a boolean color coded graph where it takes de operation in colour (true/false)
 
+#Hello fix
 
-
-
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy))
 
 
 
